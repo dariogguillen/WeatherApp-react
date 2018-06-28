@@ -1,0 +1,39 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.heading {
+  background-color: rgb(240, 240, 240);
+  text-align: center;
+  margin-bottom: 0;
+  margin-left: 15px;
+  padding: 10px ;
+  box-shadow: 0px 5px 5px 10px rgb(100, 100, 100);
+  border-radius: 10px;
+}
+
+.rightContainer {
+  background-color: rgb(240, 240, 240);
+  height: 80vh;
+  width: 100%;
+  box-shadow: 10px 10px 5px 0px rgb(100, 100, 100);
+  border-radius: 10px;
+  margin: 20px 0px 20px 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow: auto;
+}
+
+@media (max-width: 992px){
+  .rightContainer {
+    max-height: 60vh;
+  }
+}
+
+.forecastHeading{
+  text-align: center;
+  padding-top: 15px;
+  margin: 0;
+}
