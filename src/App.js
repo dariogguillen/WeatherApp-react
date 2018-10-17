@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+
 import LocationList from './components/LocationList'
 import ForecastExtende from './components/ForecastExtended'
 import Spinner from './components/WeatherLocation/Spinners'
+
+import { setCity } from './store/actions'
+
 import './App.css'
 
 const CITIES = [
@@ -27,6 +32,8 @@ class App extends Component {
     this.setState({
       city
     })
+
+    this.props.setCity(city)
   }
 
   render() {
@@ -67,4 +74,13 @@ class App extends Component {
   }
 }
 
-export default App
+const mapDispatchToProps = dispatch => {
+  return {
+    setCity: value => dispatch(setCity(value))
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App)

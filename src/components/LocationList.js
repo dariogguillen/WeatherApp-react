@@ -13,16 +13,12 @@ const LocationList = ({ cities, onClickApp }) => {
       />
     ))
 
-  return (
-  <div className="LocationListCont">
-    {strToComponent(cities)}
-  </div>
-  )
+  return <div className="LocationListCont">{strToComponent(cities)}</div>
 }
 
 LocationList.propTypes = {
   cities: PropTypes.array.isRequired,
-  onClickApp: PropTypes.func.isRequired,
+  onClickApp: PropTypes.func.isRequired
 }
 
 export default LocationList

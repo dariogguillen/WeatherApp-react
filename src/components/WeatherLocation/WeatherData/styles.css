@@ -1,10 +1,10 @@
 .weatherDataCont {
- background-color: rgba(200, 200, 200, .5);
- height: 100px;
- width: 100%;
- border-radius: 10px;
- display: flex;
- align-items: center;
+  background-color: rgba(200, 200, 200, 0.5);
+  height: 100px;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .weatherTemperatureCont {
@@ -31,7 +31,7 @@
 }
 
 .wicon {
- color: orange;
+  color: orange;
 }
 
 .weatherExtraInfoCont {

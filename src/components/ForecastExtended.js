@@ -28,7 +28,7 @@ class ForecastExtended extends Component {
       .catch(err => console.log(err))
   }
 
-  renderForecastDay(city,data) {
+  renderForecastDay(city, data) {
     return data.map(item => (
       <ForecastLoaction
         city={city}
@@ -39,19 +39,31 @@ class ForecastExtended extends Component {
       />
     ))
   }
-  
-  render = () => {
+
+  componentDidMount() {
+    this.handleData(this.props.city)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.city !== this.props.city) {
+      this.setState({
+        forecastData: null
+      })
+      this.handleData(nextProps.city)
+    }
+  }
+
+  render() {
     const { city } = this.props
     const { forecastData } = this.state
-    this.handleData(city)
     return (
       <div>
         <h2 className="forecastHeading">{city}</h2>
-        {
-          forecastData 
-            ? this.renderForecastDay(city, forecastData)
-            : <Spinner />
-        }
+        {forecastData ? (
+          this.renderForecastDay(city, forecastData)
+        ) : (
+          <Spinner />
+        )}
       </div>
     )
   }

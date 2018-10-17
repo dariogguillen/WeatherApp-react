@@ -24,7 +24,6 @@ class WeatherLocation extends Component {
     fetch(WEATHER_API)
       .then(res => res.json())
       .then(res => {
-        // console.log(res.weather[0].id)
         const data = transformWeatherData(res)
         return data
       })
@@ -36,10 +35,13 @@ class WeatherLocation extends Component {
     this.handleData()
   }
 
-  render = () => {
+  render() {
     const { city, data } = this.state
     return (
-      <div onClick={this.props.onClickLocationList} className="weatherLocationCont">
+      <div
+        onClick={this.props.onClickLocationList}
+        className="weatherLocationCont"
+      >
         <Location city={city} />
         {data ? (
           <WeatherData data={data} />
@@ -55,7 +57,7 @@ class WeatherLocation extends Component {
 
 WeatherLocation.propTypes = {
   city: PropTypes.string.isRequired,
-  onClickLocationList: PropTypes.func.isRequired,
+  onClickLocationList: PropTypes.func.isRequired
 }
 
 export default WeatherLocation
