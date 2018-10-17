@@ -26,7 +26,6 @@ const getWeatherIcon = id => {
 }
 
 export const transformWeatherData = res => {
-  // console.log(res);
   const data = {
     temperature: parseFloat((res.main.temp - 273.15).toFixed(1)),
     weatherIcon: getWeatherIcon(res.weather[0].id),

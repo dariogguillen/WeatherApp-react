@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
-import LocationList from './components/LocationList'
-import ForecastExtende from './components/ForecastExtended'
-import Spinner from './components/WeatherLocation/Spinners'
-
-import { setCity } from './store/actions'
+import LocationListContainer from './containers/LocationListContainer'
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer'
 
 import './App.css'
 
@@ -21,23 +17,8 @@ const CITIES = [
 ]
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      city: null
-    }
-    this.handleOnClickApp = this.handleOnClickApp.bind(this)
-  }
-  handleOnClickApp(city) {
-    this.setState({
-      city
-    })
-
-    this.props.setCity(city)
-  }
 
   render() {
-    const { city } = this.state
     return (
       <div className="App">
         <Grid>
@@ -48,23 +29,11 @@ class App extends Component {
           </Row>
           <Row>
             <Col xs={12} lg={6}>
-              <LocationList
-                onClickApp={this.handleOnClickApp}
-                cities={CITIES}
-              />
+              <LocationListContainer cities={CITIES} />
             </Col>
             <Col xs={12} lg={6}>
               <div className="rightContainer">
-                {!city ? (
-                  <div>
-                    <h2 className="forecastHeading">Selecciona una Ciudad</h2>
-                    <div>
-                      <Spinner />
-                    </div>
-                  </div>
-                ) : (
-                  <ForecastExtende city={city} />
-                )}
+                <ForecastExtendedContainer />
               </div>
             </Col>
           </Row>
@@ -74,13 +43,4 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCity: value => dispatch(setCity(value))
-  }
-}
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(App)
+export default App
