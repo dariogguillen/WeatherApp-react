@@ -3,19 +3,16 @@ import { FORECAST_URL, KEY } from '../../constants/config'
 import { transformForecastData } from '../../services'
 
 const setCity = payload => {
-  return { type: SET_CITY, payload: payload }
+  return { type: SET_CITY, payload }
 }
 const setForecastData = payload => {
-  return {
-    type: SET_FORECAST_DATA,
-    payload
-  }
+  return { type: SET_FORECAST_DATA, payload }
 }
 
 export const setSelectedCity = payload => {
-  return dispatch => {
-    const FORECAST_API = `${FORECAST_URL}?q=${payload}&appid=${KEY}`
+  const FORECAST_API = `${FORECAST_URL}?q=${payload}&appid=${KEY}`
 
+  return dispatch => {
     dispatch(setCity(payload))
 
     return fetch(FORECAST_API)

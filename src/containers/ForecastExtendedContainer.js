@@ -8,9 +8,10 @@ import Spinner from '../components/WeatherLocation/Spinners'
 
 export class ForecastExtendedContainer extends Component {
   render() {
+    const { city, forecastData } = this.props
     return (
       <React.Fragment>
-        {!this.props.city ? (
+        {!city ? (
           <div>
             <h2 className="forecastHeading">Selecciona una Ciudad</h2>
             <div>
@@ -18,7 +19,7 @@ export class ForecastExtendedContainer extends Component {
             </div>
           </div>
         ) : (
-          <ForecastExtended city={this.props.city} />
+          <ForecastExtended city={city} forecastData={forecastData} />
         )}
       </React.Fragment>
     )
@@ -29,7 +30,10 @@ ForecastExtendedContainer.propTypes = {
   city: PropTypes.string
 }
 
-const mapStateToProps = ({ city }) => ({ city })
+const mapStateToProps = ({ city, cities }) => ({
+  city,
+  forecastData: cities[city] && cities[city].forecastData
+})
 
 export default connect(
   mapStateToProps,

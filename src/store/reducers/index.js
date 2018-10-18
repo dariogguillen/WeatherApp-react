@@ -1,10 +1,5 @@
-import { SET_CITY } from '../constants'
+import { combineReducers } from 'redux';
+import { city } from './city';
+import { cities } from './cities';
 
-export const city = (state = {}, action) => {
-  switch (action.type) {
-    case SET_CITY:
-      return { ...state, city: action.payload }
-    default:
-      return state
-  }
-}
+export default combineReducers({ cities, city })
