@@ -3,7 +3,7 @@ import { SET_FORECAST_DATA } from '../constants'
 export const cities = (state = {}, action) => {
   switch (action.type) {
     case SET_FORECAST_DATA:
-    const { city, forecastData } = action.payload
+      const { city, forecastData } = action.payload
       return {
         ...state,
         [city]: { forecastData }
@@ -13,3 +13,6 @@ export const cities = (state = {}, action) => {
       return state
   }
 }
+
+export const getForecastDataFromCities = (state, city) =>
+  state[city] && state[city].forecastData

@@ -3,26 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import ForecastExtended from '../components/ForecastExtended'
-import Spinner from '../components/WeatherLocation/Spinners'
 
+import { getForecastDataFromCities, getCity } from '../store/reducers'
 
 export class ForecastExtendedContainer extends Component {
   render() {
     const { city, forecastData } = this.props
-    return (
-      <React.Fragment>
-        {!city ? (
-          <div>
-            <h2 className="forecastHeading">Selecciona una Ciudad</h2>
-            <div>
-              <Spinner />
-            </div>
-          </div>
-        ) : (
-          <ForecastExtended city={city} forecastData={forecastData} />
-        )}
-      </React.Fragment>
-    )
+    return <ForecastExtended city={city} forecastData={forecastData} />
   }
 }
 
@@ -30,9 +17,9 @@ ForecastExtendedContainer.propTypes = {
   city: PropTypes.string
 }
 
-const mapStateToProps = ({ city, cities }) => ({
-  city,
-  forecastData: cities[city] && cities[city].forecastData
+const mapStateToProps = state => ({
+  city: getCity(state),
+  forecastData: getForecastDataFromCities(state)
 })
 
 export default connect(
